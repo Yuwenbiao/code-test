@@ -36,7 +36,7 @@ public class SentenceBreaker {
     }
 
     /**
-     * Break the sentence in the customized dictionary
+     * Break the sentence in both dictionary
      *
      * @param sentence             the sentence to be broke
      * @param customizedDictionary the customized dictionary
