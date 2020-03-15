@@ -1,4 +1,4 @@
-package com.codetest;
+package org.example.sentencebreaker.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author ywb
  * @date 2020/3/14 22:51
  */
-public class SentenceBreaker {
+public class SentenceBreakerUtil {
     /**
      * default dictionary
      */
@@ -20,9 +20,12 @@ public class SentenceBreaker {
      * Break the sentence in the default dictionary
      *
      * @param sentence the sentence to be broke
+     * @return the result of broken sentence
      */
-    public static void breakSentence(String sentence) {
-        breakSentence(sentence, DICTIONARY, "");
+    public static List<String> breakSentence(String sentence) {
+        List<String> sentenceList = new ArrayList<>();
+        breakSentence(sentence, DICTIONARY, "", sentenceList);
+        return sentenceList;
     }
 
     /**
@@ -30,9 +33,12 @@ public class SentenceBreaker {
      *
      * @param sentence             the sentence to be broke
      * @param customizedDictionary the customized dictionary
+     * @return the result of broken sentence
      */
-    public static void breakSentence(String sentence, List<String> customizedDictionary) {
-        breakSentence(sentence, customizedDictionary, "");
+    public static List<String> breakSentence(String sentence, List<String> customizedDictionary) {
+        List<String> sentenceList = new ArrayList<>();
+        breakSentence(sentence, customizedDictionary, "", sentenceList);
+        return sentenceList;
     }
 
     /**
@@ -40,21 +46,27 @@ public class SentenceBreaker {
      *
      * @param sentence             the sentence to be broke
      * @param customizedDictionary the customized dictionary
+     * @return the result of broken sentence
      */
-    public static void breakSentenceInBothDictionary(String sentence, List<String> customizedDictionary) {
+    public static List<String> breakSentenceInBothDictionary(String sentence, List<String> customizedDictionary) {
+        List<String> sentenceList = new ArrayList<>();
         List<String> bothDictionary = new ArrayList<>();
         bothDictionary.addAll(DICTIONARY);
         bothDictionary.addAll(customizedDictionary);
-        breakSentence(sentence, bothDictionary, "");
+
+        breakSentence(sentence, bothDictionary, "", sentenceList);
+        return sentenceList;
     }
 
     /**
      * Break the sentence in the default dictionary
      *
-     * @param sentence the sentence to be broke
-     * @param result   the result of break sentence
+     * @param sentence   the sentence to be broke
+     * @param result     the result of break sentence
+     * @param dictionary the dictionary to breaker sentence
+     * @param resultList the result list of broken sentence
      */
-    private static void breakSentence(String sentence, List<String> dictionary, String result) {
+    private static void breakSentence(String sentence, List<String> dictionary, String result, List<String> resultList) {
         int sentenceLength = sentence.length();
 
         for (int i = 1; i <= sentenceLength; i++) {
@@ -62,10 +74,10 @@ public class SentenceBreaker {
             if (dictionary.contains(prefixWord)) {
                 if (i == sentenceLength) {
                     result += prefixWord;
-                    System.out.println(result);
+                    resultList.add(result);
                 }
 
-                breakSentence(sentence.substring(i, sentenceLength), dictionary, result + prefixWord + " ");
+                breakSentence(sentence.substring(i, sentenceLength), dictionary, result + prefixWord + " ", resultList);
             }
         }
     }

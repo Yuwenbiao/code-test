@@ -1,4 +1,3 @@
 # Code Test
-the class `SentenceBreaker` is the answer of this test, and the unit test is `SentenceBreakerTest`.
-
-`SentenceBreakerTest` contains 3 methods and a method source, to cover different test conditions.
+The project is based on Spring Cloud with Eureka, Zuul, and Feign. The main service provider is `sentence-breaker`, and it contains 
+the function of breaking sentence and some unit tests.
