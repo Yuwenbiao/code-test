@@ -7,12 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 请求过滤
- *
- * @author ywb
- * @date 2020/2/10 16:38
- */
 public class AccessFilter extends ZuulFilter {
     private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
 
